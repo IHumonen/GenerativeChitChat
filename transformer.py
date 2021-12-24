@@ -237,3 +237,4 @@ class ChataboxModel(nn.Module):
         probs = batch
         
         return probs
+        

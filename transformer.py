@@ -226,7 +226,7 @@ class ChataboxModel(nn.Module):
         self.lin = nn.Linear(self.emb_dim, vocab_size)
         
     def forward(self, batch, lengths):
-        
+
         batch = self.emb_layer(batch) * torch.sqrt(torch.tensor(self.emb_dim))
         batch += self.pos_emb(batch)
         
@@ -237,4 +237,3 @@ class ChataboxModel(nn.Module):
         probs = batch
         
         return probs
-        

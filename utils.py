@@ -70,7 +70,7 @@ def evaluate(model,
     with torch.no_grad():
         for batch in iterator:
 
-            predictions, ys = predict(model, batch, device)
+            predictions, ys = predict(model, batch)
 
             loss = criterion(predictions.view(-1, predictions.size(-1)), ys.view(-1))
             
@@ -115,8 +115,8 @@ def generate(model, seed_text, tokenizer, pad_index=0, eos_index=3, max_sequence
 
             pred.append(pred_token_id)
             tokenized[0].append(pred_token_id)
-            if len(tokenized) > max_len:
-                tokenized = tokenized[-max_len:]
+            if len(tokenized[0]) > max_len:
+                tokenized[0] = tokenized[0][-max_len:]
 
             if pred_token_id == eos_index:
                 break

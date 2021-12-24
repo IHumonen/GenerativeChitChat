@@ -8,9 +8,9 @@ def predict(model, batch, device):
         
         x, ys, lengths = batch
         
-        x.to(device)
-        ys.to(device)
-        lengths.to(device)
+        x = x.to(device)
+        ys = ys.to(device)
+        lengths = lengths.to(device)
         
         predictions = model(x, lengths)
         
@@ -124,4 +124,3 @@ def generate(model, seed_text, tokenizer, pad_index=0, eos_index=3, max_sequence
     predicted_text = tokenizer.decode(pred)[0]
     predicted_text += ' <EOS>'    
     return predicted_text[:predicted_text.index('<EOS>')]
-    
